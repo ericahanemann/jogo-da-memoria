@@ -1,66 +1,46 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
-#define TAM 36
+#include <math.h>
 
-void shuffle();
-
-void main(){
-    printf("**************************************************************************************************************************************\n");
-    printf("\n");
-    printf ("\t\t\t\tBEM VINDO AO JOGO\n");
-    printf("\n");
-    printf("**************************************************************************************************************************************\n");
-
+int main()
+{
     int op;
 
-    printf("\n");
-    printf("**************************************************************************************************************************************\n");
-    printf("\n");
-    printf("\t\t\t\tSelecione a op��o que preferir\n");
-    printf("\n");
-    printf("\t\t\t\t1 - Jogar\n");
-    printf("\t\t\t\t0 - Sair\n");
-    printf("\n");
-    printf("**************************************************************************************************************************************\n");
+    printf("----------------------------------------------\n");
+    printf("              JOGO DA MEMÓRIA\n");
+    printf("----------------------------------------------\n");
+    printf("\n[1] Jogar\n");
+    printf("[2] Como jogar\n");
+    printf("[3] Sair\n");
 
+    printf("\nDigite a opção desejada: ");
     scanf("%d", &op);
+    system("cls");
+    
+    do {
+         printf("----------------------------------------------\n");
+        printf("              JOGO DA MEMÓRIA\n");
+        printf("----------------------------------------------\n");
+        printf("\n[1] Jogar\n");
+        printf("[2] Como jogar\n");
+        printf("[3] Sair\n");
 
-    switch(op){
-        case 1:{
-            shuffle();
-            break;
-        }
-        case 0:{
-            puts("At� logo!!");
-            break;
-        }
+        printf("\nVocê digitou uma opção inválida, por favor digite a opção desejada: ");
+        scanf("%d", &op);
+        system("cls");
+    } while(op < 1 || op > 3);
+
+    switch (op)
+    {
+    case 1:
+        
+        break;
+    
+    default:
+        break;
     }
-
-
+    return 0;
 }
 
-void shuffle(){
-    int i, c,a,b, r;
-    char cards[6][6];
-    c = 0;
-    a = 0;
-    b = 0;
-    while(c < TAM){
-        r = rand() % 18;
-        cards[a][b] = r;
-        printf("cards[%d][%d] =\t %i\n", a, b, cards[a][b]);
-        if(b < 6){
-            b++;
-
-        }
-        else if (b == 6) {
-               b = 1;
-                a++;
-            }
 
 
-        c++;
-
-    }
-}

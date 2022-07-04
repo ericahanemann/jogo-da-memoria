@@ -37,11 +37,11 @@ void main()
 
     printf("\nDigite a opção desejada: ");
     scanf("%d", &op);
-    system("clear");
+    system("cls");
 
     if(op < 1 || op > 3){
 
-            system("clear");
+            system("cls");
             printf("\nVocê digitou uma opção inválida, por favor digite a opção desejada: \n");
             main();
  
@@ -57,7 +57,7 @@ void main()
             sleep(1);
             
         }
-        system("clear");
+        system("cls");
         matrizjogo(6,matriz2 );
         loop(matriz1,matriz2);
 
@@ -156,7 +156,7 @@ int compare(int a,int b,int i, int j, char matriz1[6][6], char matriz2[6][6]){
     temp2 = matriz1[a][b]; 
     printf("temp1 = %c, temp2 = %c\n", temp1, temp2);
     if(temp1 == temp2){
-        system("clear");
+        system("cls");
         puts("deu certo");
         matriz2[i][j] = matriz1[a][b];
         matriz2[a][b] = matriz1[i][j];
@@ -164,7 +164,7 @@ int compare(int a,int b,int i, int j, char matriz1[6][6], char matriz2[6][6]){
         loop(matriz1,matriz2);
     }
     else{
-        system("clear");
+        system("cls");
         puts("não deu certo");
         matrizjogo(6,matriz2,matriz1);
         loop(matriz1,matriz2);

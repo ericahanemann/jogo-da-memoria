@@ -62,10 +62,17 @@ void main()
         matrizjogo(6,matriz2 );
         loop(tentativas, matriz1, matriz2);
 
-        break;
-
+            break;
         case 2:
+            printf("Olá, bem vindo ao jogo da memória!\n");
+            printf("\nOBJETIVO DO JOGO:");
+            printf("\nEncontrar todos os pares de peças iguais no tabuleiro 6x6.\n");
+            printf("\nCOMO JOGAR:");
+            printf("\nVocê terá apenas 10 segundos para memorizar as peças. Quando esse tempo se esgotar as peças seram viradas para baixo e você deve informar quais peças você acha que formam um par.");
+            printf("\nSe as peças escolhidas forem iguais, elas continuarão sendo exibidas e você já pode tentar encontrar o próximo par.");
+            printf("\nPorém, se as peças forem diferentes, elas seram viradas novamente e você deve fazer mais uma tentativa.");
 
+            break;
         case 3:
             printf("Até logo!\n");
     }

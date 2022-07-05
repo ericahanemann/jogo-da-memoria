@@ -26,7 +26,7 @@ void main()
                           {'?', '?', '?', '?', '?', '?'},
                           {'?', '?', '?', '?', '?', '?'},
                           {'?', '?', '?', '?', '?', '?'}};
-    int op;
+    int op, tentativas = 0;
 
     printf("----------------------------------------------\n");
     printf("              JOGO DA MEMÓRIA\n");
@@ -60,7 +60,7 @@ void main()
 
         }
         matrizjogo(6,matriz2 );
-        loop(matriz1,matriz2);
+        loop(tentativas, matriz1, matriz2);
 
         break;
 
@@ -135,7 +135,7 @@ void matrizjogo(int t, char matriz2[t][t], char matriz1[t][t]){
 
 }
 
-void loop(char matriz1[6][6],char matriz2[6][6]){
+void loop(int tentativas, char matriz1[6][6],char matriz2[6][6]){
         int a, b, i, j;
 
         puts("");
@@ -145,10 +145,11 @@ void loop(char matriz1[6][6],char matriz2[6][6]){
         puts("Insira a linha e a coluna da segunda peça: ");
         scanf("%d", &i);
         scanf("%d", &j);
-        compare(a, b, i, j, matriz1, matriz2);
+        tentativas++;
+        compare(a, b, i, j, tentativas, matriz1, matriz2);
 }
 
-int compare(int a, int b, int i, int j, char matriz1[6][6], char matriz2[6][6]){
+int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char matriz2[6][6]){
     int op;
     char temp1 = 0, temp2 = 0;
     system("cls");
@@ -163,22 +164,27 @@ int compare(int a, int b, int i, int j, char matriz1[6][6], char matriz2[6][6]){
     if(matriz1[a][b] == matriz1[i][j]){
         puts("");
         puts("ACERTOU!");
+        puts("");
+        printf("Tentativas: %d\n", tentativas);
         sleep(5);
         system("cls");
         matrizjogo(6, matriz2, matriz1);
-        loop(matriz1, matriz2);
+        loop(tentativas, matriz1, matriz2);
     }
     
     else{
         puts("");
         puts("ERROU!");
+        puts("");
+        printf("Tentativas: %d\n", tentativas);
         matriz2[a][b] = temp1;
         matriz2[i][j] = temp2;
         sleep(5);
         system("cls");
         matrizjogo(6,matriz2,matriz1);
-        loop(matriz1,matriz2);
+        loop(tentativas, matriz1,matriz2);
     }
 
 return 0;
 }
+

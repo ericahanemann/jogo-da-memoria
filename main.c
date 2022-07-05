@@ -51,13 +51,14 @@ void main()
     {
     case 1:
         matriz(6, matriz1);
-        printmatriz(6, matriz1);
         for(int x = 20; x > 0; x--){
-            printf("Você tem %d segundos para memorizar\n", x);
+            printmatriz(6, matriz1);
+            puts("");
+            printf("você tem %d segundos para memorizar os cartões!\n", x);
             sleep(1);
+            system("cls");
 
         }
-        system("cls");
         matrizjogo(6,matriz2 );
         loop(matriz1,matriz2);
 
@@ -105,7 +106,7 @@ void printmatriz(int t, char matriz1[t][t]){
 
     }
     puts("   -----------------------------------\n ");
-    printf("************************************************************************************************\n"); i = 0;
+    printf("*************************************************\n"); i = 0;
 
 
 }
@@ -146,7 +147,7 @@ void loop(char matriz1[6][6],char matriz2[6][6]){
         compare(a, b, i, j, matriz1, matriz2);
 }
 
-int compare(int a,int b,int i, int j, char matriz1[6][6], char matriz2[6][6]){
+int compare(int a, int b, int i, int j, char matriz1[6][6], char matriz2[6][6]){
     int op;
     char temp1 = 0, temp2 = 0;
     printf(" a = %d , b = %d, matriz1[%d][%d] = %c\n",a,b,a,b, matriz1[a][b] );

@@ -51,7 +51,7 @@ void main()
     {
     case 1:
         matriz(6, matriz1);
-        for(int x = 20; x > 0; x--){
+        for(int x = 10; x > 0; x--){
             printmatriz(6, matriz1);
             puts("");
             printf("você tem %d segundos para memorizar os cartões!\n", x);
@@ -138,10 +138,11 @@ void matrizjogo(int t, char matriz2[t][t], char matriz1[t][t]){
 void loop(char matriz1[6][6],char matriz2[6][6]){
         int a, b, i, j;
 
-        puts("Insira a linha e a coluna do elemento desejado: ");
+        puts("");
+        puts("Insira a linha e a coluna da primeira peça: ");
         scanf("%d", &a );
         scanf("%d", &b);
-        puts("Insira a linha e a coluna do elemento desejado: ");
+        puts("Insira a linha e a coluna da segunda peça: ");
         scanf("%d", &i);
         scanf("%d", &j);
         compare(a, b, i, j, matriz1, matriz2);
@@ -150,23 +151,29 @@ void loop(char matriz1[6][6],char matriz2[6][6]){
 int compare(int a, int b, int i, int j, char matriz1[6][6], char matriz2[6][6]){
     int op;
     char temp1 = 0, temp2 = 0;
-    printf(" a = %d , b = %d, matriz1[%d][%d] = %c\n",a,b,a,b, matriz1[a][b] );
-    printf(" a = %d , b = %d, matriz1[%d][%d] = %c\n",i,j,i,j, matriz1[i][j] );
+    system("cls");
 
-    temp1 = matriz1[a][b];
-    temp2 = matriz1[i][j];
-    printf("temp1 = %c, temp2 = %c\n", temp1, temp2);
-    if(temp1 == temp2){
-        puts("deu certo");
+    temp1 = matriz2[a][b];
+    temp2 = matriz2[i][j];
+
+    matriz2[a][b] = matriz1[a][b];
+    matriz2[i][j] = matriz1[i][j];
+    matrizjogo(6,matriz2,matriz1);
+
+    if(matriz1[a][b] == matriz1[i][j]){
+        puts("");
+        puts("ACERTOU!");
         sleep(5);
         system("cls");
-        matriz2[a][b] = matriz1[a][b];
-        matriz2[i][j] = matriz1[i][j];
         matrizjogo(6, matriz2, matriz1);
         loop(matriz1, matriz2);
     }
+    
     else{
-        puts("não deu certo");
+        puts("");
+        puts("ERROU!");
+        matriz2[a][b] = temp1;
+        matriz2[i][j] = temp2;
         sleep(5);
         system("cls");
         matrizjogo(6,matriz2,matriz1);

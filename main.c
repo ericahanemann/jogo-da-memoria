@@ -11,7 +11,7 @@ void matrizjogo();
 void jogo();
 int compare();
 void loop();
-int fimdejogo();
+void tempo();
 
 int main()
 {
@@ -31,6 +31,7 @@ int main()
                           {'?', '?', '?', '?', '?', '?'}};
 
     int op, op2, tentativas = 0;
+    time_t t_ini, t_fim;
 
     printf("----------------------------------------------\n");
     printf("              JOGO DA MEMÓRIA\n");
@@ -59,6 +60,7 @@ int main()
             printmatriz(6, matriz1);
             puts("");
             printf("você tem %d segundos para memorizar as peças!\n", x);
+            t_ini = time(NULL);
             sleep(1);
             system("cls");
 
@@ -186,8 +188,9 @@ void loop(int tentativas, char matriz1[6][6],char matriz2[6][6]){
         compare(a, b, i, j, tentativas, matriz1, matriz2);
 }
 
-int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char matriz2[6][6]){
+int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char matriz2[6][6], time_t t_ini, time_t t_fim){
     int iguais, linha, coluna;
+    double tempo;
     char temp1 = 0, temp2 = 0;
     system("cls");
 
@@ -213,11 +216,16 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
             }
         }
         if(iguais == 36){
+            t_fim = time(NULL);
+            tempo = difftime(t_fim, t_ini);
+            tempo = tempo / 60;
             system("cls");
             printf("PARABÉNS! VOCÊ VENCEU!\n");
             printf("Total de tentativas: %d\n", tentativas);
+            printf("Tempo total: %.2lf\n", tempo);
         }
         else{
+            printf("Tempo total: %.2lf\n", tempo);
             matrizjogo(6, matriz2, matriz1);
             loop(tentativas, matriz1, matriz2);
         }
@@ -228,6 +236,7 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
         puts("ERROU!");
         puts("");
         printf("Tentativas: %d\n", tentativas);
+        printf("Tempo total: %.2lf\n", tempo);
         matriz2[a][b] = temp1;
         matriz2[i][j] = temp2;
         sleep(4);
@@ -238,5 +247,6 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
 
 return 0;
 }
+
 
 

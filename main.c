@@ -52,12 +52,11 @@ void main()
     case 1:
         matriz(6, matriz1);
         printmatriz(6, matriz1);
-        for(int x = 5; x > 0; x--){ 
+        for(int x = 10; x > 0; x--){ 
             printf("Você tem %d segundos para memorizar\n", x);
             sleep(1);
-            
+            system("cls");
         }
-        system("cls");
         matrizjogo(6,matriz2 );
         loop(matriz1,matriz2);
 

@@ -11,6 +11,7 @@ void matrizjogo();
 void jogo();
 int compare();
 void loop();
+int fimdejogo();
 
 int main()
 {
@@ -28,6 +29,7 @@ int main()
                           {'?', '?', '?', '?', '?', '?'},
                           {'?', '?', '?', '?', '?', '?'},
                           {'?', '?', '?', '?', '?', '?'}};
+
     int op, op2, tentativas = 0;
 
     printf("----------------------------------------------\n");
@@ -170,18 +172,22 @@ void loop(int tentativas, char matriz1[6][6],char matriz2[6][6]){
         int a, b, i, j;
 
         puts("");
-        puts("Insira a linha e a coluna da primeira peça: ");
-        scanf("%d", &a );
-        scanf("%d", &b);
-        puts("Insira a linha e a coluna da segunda peça: ");
-        scanf("%d", &i);
-        scanf("%d", &j);
+        do{
+            puts("Insira a linha e a coluna da primeira peça: ");
+            scanf("%d", &a );
+            scanf("%d", &b);
+        }while(a < 0 || a > 5 || b < 0 || b > 5);
+       do{
+            puts("Insira a linha e a coluna da segunda peça: ");
+            scanf("%d", &i);
+            scanf("%d", &j);
+       }while(i < 0 || i > 5 || j < 0 || j > 5);
         tentativas++;
         compare(a, b, i, j, tentativas, matriz1, matriz2);
 }
 
 int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char matriz2[6][6]){
-    int op;
+    int iguais, linha, coluna;
     char temp1 = 0, temp2 = 0;
     system("cls");
 
@@ -196,11 +202,25 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
         puts("");
         puts("ACERTOU!");
         puts("");
-        printf("Tentativas: %d\n", tentativas);
-        sleep(5);
+        printf("Tentativas até o momento: %d\n", tentativas);
+        sleep(4);
         system("cls");
-        matrizjogo(6, matriz2, matriz1);
-        loop(tentativas, matriz1, matriz2);
+        for(linha = 0; linha <= 5; linha++){
+            for(coluna = 0; coluna <= 5; coluna++){
+                if(matriz2[linha][coluna] == matriz1[linha][coluna]){
+                    iguais++;
+                }
+            }
+        }
+        if(iguais == 36){
+            system("cls");
+            printf("PARABÉNS! VOCÊ VENCEU!\n");
+            printf("Total de tentativas: %d\n", tentativas);
+        }
+        else{
+            matrizjogo(6, matriz2, matriz1);
+            loop(tentativas, matriz1, matriz2);
+        }
     }
 
     else{
@@ -210,7 +230,7 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
         printf("Tentativas: %d\n", tentativas);
         matriz2[a][b] = temp1;
         matriz2[i][j] = temp2;
-        sleep(5);
+        sleep(4);
         system("cls");
         matrizjogo(6,matriz2,matriz1);
         loop(tentativas, matriz1,matriz2);
@@ -218,4 +238,5 @@ int compare(int a, int b, int i, int j, int tentativas, char matriz1[6][6], char
 
 return 0;
 }
+
 
